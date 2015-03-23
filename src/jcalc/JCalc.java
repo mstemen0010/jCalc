@@ -27,6 +27,7 @@ public class JCalc extends Application {
         Image systemImage = new Image(getClass().getResourceAsStream("/jcalc/images/calcfx_icon_from_vintage_casio_64.jpg"));
         stage.getIcons().add(systemImage);
         stage.setScene(scene);
+        stage.setTitle("CalxFx 2.1");
         stage.show();
     }
 

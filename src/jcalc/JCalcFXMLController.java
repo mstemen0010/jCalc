@@ -51,7 +51,7 @@ public class JCalcFXMLController implements Initializable {
         Key_9("9"),
         Key_0("0"),
         Key_Point("."),
-        Key_Div(" ^ "),
+        Key_Div(" / "),
         Key_Mult(" * "),
         Key_Plus(" + "),
         Key_Sub(" - "),
@@ -167,55 +167,57 @@ public class JCalcFXMLController implements Initializable {
         event.consume();
         System.out.println("Got Key Event: " + event.toString());
 
-        // System.out.println("Value is: " + t );
-        // this.displayScreen.setText(value);
-        // this.displayScreen.setText(currentButton.getText());
-//        if( t != null )
-//        {
-//            KeyType kt =  KeyType.getKeyType(t);
-//            
-//            switch( kt )
-//            {
-//                case Key_1:
-//                case Key_2:                    
-//                case Key_3:                                    
-//                case Key_4:                                    
-//                case Key_5:                                                        
-//                case Key_6:
-//                case Key_7:
-//                case Key_8:
-//                case Key_9:
-//                case Key_0:
-//                    t = kt.getKeyValue();
-//                    break;
-//                case Key_Mult:
-//                    t = "  *  ";
-//                    break;
-//                case Key_Sub: 
-//                    t = " - ";
-//                    break;
-//                case Key_Div:
-//                    t = " / ";
-//                    break;
-//                case Key_Plus:
-//                    t = " + ";
-//                    break;
-//                case Key_Power:
-//                    t = " ^ ";
-//                    break;
-//                case Key_OpenPeren:
-//                    t = " ( ";
-//                    break;
-//                case Key_ClosePeren:
-//                    t = ")";
-//                    break;
-//                case Key_Clear:
-//                    this.clearScreen();
-//                    break;
-//                    
-//            }
-//        
-//        }
+        
+         System.out.println("Value is: " + t );
+         this.displayScreen.setText(t);
+         
+         KeyType kt =  KeyType.getKeyType(t);
+         this.displayScreen.setText(kt.getKeyValue());
+        if( t != null )
+        {                        
+            switch( kt )
+            {
+                case Key_1:
+                case Key_2:                    
+                case Key_3:                                    
+                case Key_4:                                    
+                case Key_5:                                                        
+                case Key_6:
+                case Key_7:
+                case Key_8:
+                case Key_9:
+                case Key_0:
+                    t = kt.getKeyValue();
+                    break;
+                case Key_Mult:
+                    t = "  *  ";
+                    break;
+                case Key_Sub: 
+                    t = " - ";
+                    break;
+                case Key_Div:
+                    t = " / ";
+                    break;
+                case Key_Plus:
+                    t = " + ";
+                    break;
+                case Key_Power:
+                    t = " ^ ";
+                    break;
+                case Key_OpenPeren:
+                    t = " ( ";
+                    break;
+                case Key_ClosePeren:
+                    t = ")";
+                    break;
+                case Key_Clear:
+                    this.clearScreen();
+                    break;
+                    
+            }
+        
+        }
+        keyEntry.add(kt);
         if ("\r".equals(t)) {
             this.evalScreen();
         } else {
@@ -342,7 +344,10 @@ public class JCalcFXMLController implements Initializable {
             // this.displayScreen.setText(screenValue);
 
         } else {
-            screenValue = this.simpleEval(screenValue);
+               // screenValue = this.simpleEval(screenValue);
+      
+            double val = this.complexEval(screenValue);        	
+            screenValue = String.valueOf(val);
         }
         // 
         this.currentEval = screenValue;
@@ -353,6 +358,7 @@ public class JCalcFXMLController implements Initializable {
         this.screenValue = new StringBuilder("");
         this.displayScreen.setText("");
         this.keyEntry.clear();
+        this.currentEval = "";
     }
 
     /**

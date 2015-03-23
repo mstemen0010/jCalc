@@ -4,6 +4,7 @@
 
 .mainFxmlClass {
     /* -fx-background-color: #CCFFFF; */
+    -fx-font-family: "OpenSans-Regular";
     -fx-background-color: #cccccc;
     -fx-background-radius: 10;
     -fx-border-radius: 10;
